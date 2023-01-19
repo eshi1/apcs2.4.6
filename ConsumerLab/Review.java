@@ -18,10 +18,10 @@ public class Review {
   
   private static final String SPACE = " ";
   public static void main(String [] args){
-    System.out.println(sentimentVal("depressed"));
+    //System.out.println(sentimentVal("depressed"));
     //textToString(SPACE);
     System.out.println(totalSentiment(("/workspace/apcs2.4.6/ConsumerLab/test.txt")));
-    
+    System.out.println(starRating());
  
   }
   
@@ -93,8 +93,6 @@ public class Review {
 
   public static double totalSentiment( String fileName ){
     String x = textToString(fileName);
-    //sentimentVal(x);
-    //fileName = "depression depressed";
 		String [] words = x.split(" "); 
     double text = 0;
 		for (String word : words) {
@@ -106,17 +104,31 @@ public class Review {
       }
     }
     return text;
-    /*try
-    {
-      System.out.println(sentiment.get(x.toLowerCase()));
-      return sentiment.get(x.toLowerCase());
-    }
-    catch(Exception e)
-    {
-      return 0;
-    }
-    */
   }
+
+  public static int starRating(){
+    
+    int star = 0;
+    double sent = totalSentiment(("/workspace/apcs2.4.6/ConsumerLab/test.txt"));
+    if (sent < 0){
+      star = 1;
+    }
+    else if (sent >=0&&sent<1){
+      star = 2;
+    }
+    else if (sent >=1&&sent<5){
+      star = 3;
+    }
+    else if (sent >=5&&sent<20){
+      star = 4;
+    }
+    else if (sent >=20){
+      star = 5;
+    }
+    return star;
+
+  }
+
   
   /**
    * @returns the sentiment value of word as a number between -1 (very negative) to 1 (very positive sentiment) 
@@ -196,5 +208,15 @@ public class Review {
     } else {
       return randomNegativeAdj();
     }
+  }
+
+  public static String fakeReview(String fileName){
+    String x = "testing 123";
+    for (int i = 0; i<(x.length());i++){
+      x.indexOf("*");
+    }
+
+    return x;
+
   }
 }
